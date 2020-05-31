@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from '../../components/layout'
-import { Link, useStaticQuery } from 'gatsby'
+import { Link, useStaticQuery, graphql } from 'gatsby'
 
 export default function Page3() {
   const data = useStaticQuery(graphql`
