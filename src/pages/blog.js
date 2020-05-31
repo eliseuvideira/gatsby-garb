@@ -29,7 +29,7 @@ export default function Blog() {
         <h1 style={{ display: 'inlineBlock', borderBottom: '1px solid' }}>
           Gatsby Garb Blog
         </h1>
-        <h4>{data.allMarkdownRemark.totalCount}</h4>
+        <h4>Posts: {data.allMarkdownRemark.totalCount}</h4>
         {data.allMarkdownRemark.edges.map(
           ({
             node: {
