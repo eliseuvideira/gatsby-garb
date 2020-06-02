@@ -3,6 +3,7 @@ const { resolve } = require('path')
 
 const PostTemplate = resolve('./src/templates/post-template.js')
 const BlogTemplate = resolve('./src/templates/blog-template.js')
+const ProductTemplate = resolve('./src/templates/product-template.js')
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   if (node.internal.type === 'MarkdownRemark') {
@@ -26,6 +27,14 @@ exports.createPages = async ({ graphql, actions }) => {
             fields {
               slug
             }
+          }
+        }
+      }
+
+      allContentfulProduct {
+        edges {
+          node {
+            slug
           }
         }
       }
@@ -58,6 +67,17 @@ exports.createPages = async ({ graphql, actions }) => {
         isLastPage,
         currentPage,
         totalPages,
+      },
+    })
+  })
+
+  const products = data.allContentfulProduct.edges
+  products.forEach(({ node: product }) => {
+    createPage({
+      path: `/products/${product.slug}`,
+      component: ProductTemplate,
+      context: {
+        slug: product.slug,
       },
     })
   })
