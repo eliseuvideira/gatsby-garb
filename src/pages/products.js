@@ -9,8 +9,21 @@ const Products = ({ data: { allContentfulProduct } }) => (
     <div>
       {allContentfulProduct.edges.map(({ node: product }) => (
         <div key={product.id}>
-          <Link to={`/products/${product.slug}`}>
-            <h3>{product.name}</h3>
+          <Link
+            to={`/products/${product.slug}`}
+            style={{
+              textDecoration: 'none',
+              color: '#551a8b',
+            }}
+          >
+            <h3>
+              {product.name} ·{' '}
+              <span
+                style={{ fontSize: '1.2rem', fontWeight: 300, color: '#f60' }}
+              >
+                ${product.price}
+              </span>
+            </h3>
           </Link>
           <Img style={{ maxWidth: 400 }} fluid={product.image.fluid} />
         </div>
@@ -28,6 +41,7 @@ export const query = graphql`
           name
           description
           slug
+          price
           image {
             fluid(maxWidth: 400) {
               ...GatsbyContentfulFluid_tracedSVG

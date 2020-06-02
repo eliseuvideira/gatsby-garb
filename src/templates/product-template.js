@@ -13,8 +13,8 @@ const ProductTemplate = ({
       <h2>
         {name} - <span style={{ color: '#ccc' }}>Added on {createdAt}</span>
       </h2>
+      <h4>${price}</h4>
       <p>{description}</p>
-      <p>Price: {price}</p>
       <Img style={{ margin: '0 auto', maxWidth: 600 }} fluid={image.fluid} />
     </div>
   </Layout>
