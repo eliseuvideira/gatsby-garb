@@ -4,6 +4,15 @@ import React from 'react'
 
 import gatsbyLogo from '../images/gatsby-icon.png'
 
+const NavLink = props => (
+  <Link
+    {...props}
+    getProps={({ isCurrent }) => ({
+      className: isCurrent ? 'active' : 'navlink',
+    })}
+  />
+)
+
 const Header = ({ siteTitle }) => (
   <header
     style={{
@@ -33,17 +42,11 @@ const Header = ({ siteTitle }) => (
           }}
         />
         <h1 style={{ margin: 0 }}>
-          <Link
-            to="/"
-            style={{
-              color: `white`,
-              textDecoration: `none`,
-            }}
-          >
-            {siteTitle}
-          </Link>
+          <NavLink to="/">{siteTitle}</NavLink>
         </h1>
       </span>
+      <NavLink to="/blog">Blog</NavLink>
+      <NavLink to="/products">Store</NavLink>
       <div
         style={{ color: 'white', cursor: 'pointer' }}
         className="snipcart-summary snipcart-checkout"
