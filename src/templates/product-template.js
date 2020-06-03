@@ -17,6 +17,13 @@ const ProductTemplate = ({
       <h4>${price}</h4>
       <p>{description}</p>
       <button
+        style={{
+          backgroundColor: 'darkorange',
+          color: 'white',
+          padding: '0.3em',
+          borderRadius: '5px',
+          cursor: 'pointer',
+        }}
         className="snipcart-add-item"
         data-item-id={slug}
         data-item-price={price}
