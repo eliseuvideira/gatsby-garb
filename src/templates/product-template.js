@@ -5,8 +5,9 @@ import Img from 'gatsby-image'
 
 const ProductTemplate = ({
   data: {
-    contentfulProduct: { name, price, description, createdAt, image },
+    contentfulProduct: { slug, name, price, description, createdAt, image },
   },
+  location,
 }) => (
   <Layout>
     <div style={{ margin: '0 auto', width: '100%', textAlign: 'center' }}>
@@ -15,6 +16,16 @@ const ProductTemplate = ({
       </h2>
       <h4>${price}</h4>
       <p>{description}</p>
+      <button
+        className="snipcart-add-item"
+        data-item-id={slug}
+        data-item-price={price}
+        data-item-image={image.file.url}
+        data-item-name={name}
+        data-item-url={location.pathname}
+      >
+        Add to Cart
+      </button>
       <Img style={{ margin: '0 auto', maxWidth: 600 }} fluid={image.fluid} />
     </div>
   </Layout>
@@ -23,6 +34,7 @@ const ProductTemplate = ({
 export const query = graphql`
   query($slug: String!) {
     contentfulProduct(slug: { eq: $slug }) {
+      slug
       name
       price
       description
@@ -30,6 +42,9 @@ export const query = graphql`
       image {
         fluid {
           ...GatsbyContentfulFluid
+        }
+        file {
+          url
         }
       }
     }
